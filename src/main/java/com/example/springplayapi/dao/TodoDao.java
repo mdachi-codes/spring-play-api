@@ -2,17 +2,20 @@ package com.example.springplayapi.dao;
 
 import com.example.springplayapi.model.Todo;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface TodoDao {
 
-    String addTodo(Todo todo);
+    Todo addTodo(Todo todo);
 
-    default String updateTodo(Todo todo){
+    default Todo updateTodo(Todo todo){
         UUID id = UUID.randomUUID();
 
         return updateTodo(id, todo);
     }
 
-    String updateTodo(UUID todoId, Todo todo);
+    Todo updateTodo(UUID todoId, Todo todo);
+
+    List<Todo> getTodos();
 }

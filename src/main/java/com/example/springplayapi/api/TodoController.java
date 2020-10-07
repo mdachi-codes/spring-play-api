@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import com.example.springplayapi.service.TodoService;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequestMapping("api/v1/todo")
 @RestController
@@ -19,12 +21,17 @@ public class TodoController {
     }
 
     @PostMapping
-    public String addTodo(@RequestBody Todo todo){
+    public Todo addTodo(@RequestBody Todo todo){
         return todoService.addTodo(todo);
     }
 
+    @PutMapping
+    public  Todo updateTodo(@RequestBody Todo todo){
+        return todoService.updateTodo(todo.getTodoId(), todo);
+    }
+
     @GetMapping
-    public String getTodo(){
-        return "123";
+    public List<Todo> getTodo(){
+        return todoService.getTodos();
     }
 }
